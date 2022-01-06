@@ -24,7 +24,10 @@ while True:
     if (host_os=="MAC"):
         command="open"
     if(int(pendaftar.split(" ")[1])<int(kuota.split(" ")[1])):
-        os.system("{} https://www.youtube.com/watch?v=dQw4w9WgXcQ".format(command))
+        if (host_os=="MAC"):
+            os.system("{} 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'".format(command))
+        else:
+            os.system("{} https://www.youtube.com/watch?v=dQw4w9WgXcQ".format(command))
     print("Banyak iterasi",iteration)
     iteration+=1
     #Lama Jeda dalam detik
