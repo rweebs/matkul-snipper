@@ -1,28 +1,38 @@
-from playsound import playsound
 import time
 import requests
 from bs4 import BeautifulSoup
+import os
 iteration=1
 # isi indeks yang dah keluar
 temp_indeks=0
+from os import environ as env
+
+from dotenv import load_dotenv
+load_dotenv()
 
 while True:
     t = time.localtime()
+    # print(env)
     current_time = time.strftime("%H:%M:%S", t)
     print(current_time)
-    URL = "Isi url"
-    page = requests.get(URL, headers={"cookie":"isi cookie","user-agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36"})
+    page = requests.get(env["URL_MK"], headers={"cookie":env["COOKIE"],"user-agent":env["USER_AGENT"]})
     # print(page)
     soup = BeautifulSoup(page.content, "html.parser")
     # #Isi Array matkul
+    kelas=int(env["KELAS"])-1
     scrapper = soup.find_all("p",  {"class": ["small"]})
-    kuota = scrapper[0].text.split(" ")[1]
-    pendaftar = scrapper[1].text.split(" ")[1]
-    print(scrapper[0].text)
-    print(scrapper[1].text)
-    if(int(pendaftar)<int(kuota)):
-        playsound('./hawaii_aloha_oe.mp3')
+    kuota = scrapper[kelas*2].text
+    pendaftar = scrapper[kelas*2-1].text
+    print(kuota)
+    print(pendaftar)
+    host_os=env["OS"]
+    command="start"
+    if (host_os=="MAC"):
+        command="open"
+    if(int(pendaftar.split(" ")[1])<int(kuota.split(" ")[1])):
+        os.system("{} 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'".format(command))
     print("Banyak iterasi",iteration)
     iteration+=1
-    time.sleep(1*60)
+    #Lama Jeda dalam detik
+    time.sleep(60)
 
