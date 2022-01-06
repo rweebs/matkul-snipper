@@ -3,22 +3,16 @@ import requests
 from bs4 import BeautifulSoup
 import os
 iteration=1
-# isi indeks yang dah keluar
-temp_indeks=0
 from os import environ as env
-
 from dotenv import load_dotenv
 load_dotenv()
 
 while True:
     t = time.localtime()
-    # print(env)
     current_time = time.strftime("%H:%M:%S", t)
     print(current_time)
     page = requests.get(env["URL_MK"], headers={"cookie":env["COOKIE"],"user-agent":env["USER_AGENT"]})
-    # print(page)
     soup = BeautifulSoup(page.content, "html.parser")
-    # #Isi Array matkul
     kelas=int(env["KELAS"])-1
     scrapper = soup.find_all("p",  {"class": ["small"]})
     kuota = scrapper[kelas*2].text
