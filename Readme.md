@@ -8,3 +8,6 @@ Cara gunainnya
 SS:
 ![plot](./ss.png)
 5. py main.py atau python3 main.py atau python main.py
+
+
+Youtube Tutorial : https://www.youtube.com/watch?v=_14Z49FxUoA
