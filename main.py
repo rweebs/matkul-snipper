@@ -10,27 +10,19 @@ while True:
     t = time.localtime()
     current_time = time.strftime("%H:%M:%S", t)
     print(current_time)
-    URL = "https://akademik.itb.ac.id/app/mahasiswa:<NIM>/statusmhs"
-    page = requests.get(URL, headers={"cookie":"<isi cookie>","user-agent":"<isi agent>"})
+    URL = "Isi url"
+    page = requests.get(URL, headers={"cookie":"isi cookie","user-agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36"})
+    # print(page)
     soup = BeautifulSoup(page.content, "html.parser")
-    #Isi Array matkul
-    matkuls = ["RPL","Lasti","AKE","IMK","Sismul","TST"]
-    scrapper=soup.find_all("td",  {"class": ["text-center"]})
-    count=0
-    indeks_keluar=0
-    matkul_baru=""
-    for i in range (len(scrapper)):
-        if(i % 3 == 2 ):
-            print("{matkul},{indeks}".format(matkul=matkuls[count], indeks=scrapper[i].text))
-            if (scrapper[i].text !=""):
-                indeks_keluar+=1
-                matkul_baru=matkuls[count]
-            count+=1
-    if indeks_keluar>temp_indeks :
-        temp_indeks+=1
+    # #Isi Array matkul
+    scrapper = soup.find_all("p",  {"class": ["small"]})
+    kuota = scrapper[0].text.split(" ")[1]
+    pendaftar = scrapper[1].text.split(" ")[1]
+    print(scrapper[0].text)
+    print(scrapper[1].text)
+    if(int(pendaftar)<int(kuota)):
         playsound('./hawaii_aloha_oe.mp3')
-    print("Persentase indeks",indeks_keluar/len(matkuls)*100,"%")
     print("Banyak iterasi",iteration)
     iteration+=1
-    time.sleep(5*60)
+    time.sleep(1*60)
 
