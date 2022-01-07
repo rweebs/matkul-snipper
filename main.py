@@ -11,13 +11,16 @@ load_dotenv()
 
 
 def alert():
+    url = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
     host_os = env["OS"]
+    if host_os == "MAC":
+        os.system(f"open '{url}'")
+        return
+    # Windows
     command = "start"
     if host_os == "LINUX":
         command = "xdg-open"
-    if host_os == "MAC":
-        command = "open"
-    os.system("{} https://www.youtube.com/watch?v=dQw4w9WgXcQ".format(command))
+    os.system(f"{command} {url}")
 
 
 while True:
