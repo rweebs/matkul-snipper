@@ -1,13 +1,38 @@
 Cara gunainnya
-1. pip install requests
-2. pip install beautifulsoup4
-3. pip install python-dotenv
-3. rename .env.example jadi .env
-4. isi data data nya
-4. Ambil cookie dan user agent dari inspect element di bagian network check yang statusmhs
-SS:
-![plot](./ss.png)
-5. py main.py atau python3 main.py atau python main.py
+<ol>
+    <li>Setup virtual environtment </li>
+    <ul>
+        <li>
+        Menggunakan poetry. Install poetry di<a href="https://python-poetry.org/docs/#installation">sini</a>
+        <ol>
+            <li>Download dependencies</li>
+            > poetry install
+            <li>Aktifkan shell (sama dengan virtual env)</li>
+            > poetry shell
+        </ol>
+        </li>
+        <li>
+        Menggunakan pip biasa
+        <ol>
+            <li>Install virtualenv jika belum punya</li>
+                > pip install virtualenv
+            <li>Buat virtual env</li>
+                > virtualenv venv
+            <li>Aktifkan virtual env</li>
+                <p>Untuk windows run `venv\Scripts\activate`</p>
+                <p>Untuk linux run `source venv/bin/activate`</p>
+            <li>Download dependencies</li>
+                > pip install -r requirements.txt
+        </ol>
+        </li>
+    </ul>
+    <li>rename .env.example jadi .env </li>
+    <li>isi data data nya</li>
+    <li>Ambil cookie dan user agent dari inspect element di bagian network check yang statusmhs. SS: <image src='./ss.png' />
+    </li>
+    <li> Run main program</li>
+        > python main.py
+</ol>
 
 
 Youtube Tutorial : https://www.youtube.com/watch?v=_14Z49FxUoA
